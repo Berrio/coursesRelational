@@ -3,6 +3,7 @@ package com.sofka.courses.controller;
 import com.sofka.courses.entity.Course;
 import com.sofka.courses.entity.Student;
 import com.sofka.courses.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,30 +12,31 @@ import java.util.List;
 @RequestMapping("api/")
 public class Controller {
 
+    @Autowired
     private CourseService service;
 
-    @GetMapping
-    public List<Course> getAllCourses(){
+    @GetMapping("get/courses")
+    public List<Course> getAllCourses() {
         return service.getCourses();
     }
 
-    @PostMapping("create/post")
-    public Course createCourse(@RequestBody Course course){
+    @PostMapping("create/course")
+    public Course createCourse(@RequestBody Course course) {
         return service.CreateCourse(course);
     }
 
-    @PostMapping("create/comment")
-    public Course createComment(@RequestBody Student student){
+    @PostMapping("create/student")
+    public Course createStudent(@RequestBody Student student) {
         return service.CreateStudent(student);
     }
 
     @DeleteMapping("delete/course")
-    public void deleteCourse(@RequestBody Course course){
+    public void deleteCourse(@RequestBody Course course) {
         service.deleteCourse(course);
     }
 
     @DeleteMapping("delete/student")
-    public void deletestudent(@RequestBody Student student){
+    public void deletestudent(@RequestBody Student student) {
         service.deleteStudent(student);
     }
 }
